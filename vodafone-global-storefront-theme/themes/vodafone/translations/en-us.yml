@@ -32,8 +32,7 @@ listing:
   list_view: 'List view'
   grid_view: 'Grid view'
   buy_now: 'Buy Now'
-help_menu: 'Please call 1399 from your Vodafone Greece mobile / fixed line, or 800 11 127 127 from any other network fixed line in Greece. (The call is free of charge) <br><br>
-If you are outside Greece, please call +30 694 4401399. (The call is charged as an outgoing call to mobile in Greece according to your network operator pricelist) <br><br>
+help_menu: 'For help, please click <a href="https://n.vodafone.ie/business/support.html" target="_blank">here</a> to view our support and contact us options
             '
 help_menu_title: 'Need help?'
 searchBar:
