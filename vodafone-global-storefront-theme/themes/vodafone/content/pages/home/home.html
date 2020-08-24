@@ -62,21 +62,14 @@
             t(i18n.custom.home.popular_apps)) }}
         </div>
     </section>
-
+    <section class="section section--gallery gutter__large--y">
+        {{ recommendedSolutions(productLists.customLists.recommendedSolutions,
+            productLists.customLists.recommendedSolutions.products) }}
+    </section>
     <section class="section gutter__large--y">
         {{ whyVodafone() }}
     </section>
-    <section class="section section--light-grey">
-        <div class="d-block d-lg-none">
-            {{ carousel('featuredPartnersMobile', featuredPartners, featuredPartners.items, 'logo', true, false, false,
-            'mobile', 1, true, true)
-            }}
-        </div>
-        <div class="d-none d-lg-block">
-            {{ carousel('featuredPartnersDesktop', featuredPartners, featuredPartners.items, 'logo', true, false, false,
-            'desktop', 1, true, true) }}
-        </div>
-    </section>
+
 </div>
 {% endblock %}
 

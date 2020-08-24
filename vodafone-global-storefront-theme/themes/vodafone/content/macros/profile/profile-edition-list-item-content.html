@@ -21,6 +21,9 @@
                 {% else %}
                 <div class="invisible">.</div>
                 {% endif %}
+                {% if plan.costs and plan.costs.flatPrice %}
+                {{ profileEditionCost(plan.costs.flatPrice) }}
+                {% endif %}
                 {% if loop.index < planCount %}
 
                 <li
