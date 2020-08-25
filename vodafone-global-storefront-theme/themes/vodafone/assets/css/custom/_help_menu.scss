@@ -112,22 +112,7 @@
   display: block
 }
 
-@include media-breakpoint-down(md) {
-  .side-toggle {
-    min-height: 250px
-  }
-  .side-toggle__button {
-    width: 60px
-  }
-  .side-toggle__content {
-    padding: 30px 40px;
-    max-width: 440px
-  }
-  .side-toggle__icon-circle {
-    width: 62px;
-    height: 62px
-  }
-}
+
 
 @include media-breakpoint-down(sm) {
   .side-toggle--viewport-height-fix {
@@ -165,7 +150,7 @@
   background: $color-red !important;
 }
 
-@include media-breakpoint-down(md) {
+@include media-breakpoint-down(sm) {
   .side-toggle {
     bottom: 0px;
     left: auto;
@@ -195,6 +180,7 @@
     transform: none;
   }
 }
+
 
 @include media-breakpoint-down(sm) {
   .side-toggle {
