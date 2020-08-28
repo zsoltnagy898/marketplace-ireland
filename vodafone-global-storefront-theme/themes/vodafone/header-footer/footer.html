@@ -614,9 +614,17 @@
 
     handleScroll();
 
+    function navFix () {
+      const marketplace = document.querySelector('a[href="/channel/products"]');
+      marketplace && marketplace.classList.add('ad-component_dropdown--trigger');
+      const developer = document.querySelector('#developer');
+      developer && developer.classList.add('ad-component_dropdown--trigger');
+    }
+
     $(document).ready(function() {
       handleScroll();
       window.addEventListener("scroll", handleScroll);
+      navFix();
     });
 
     $(window).on("load", function() {
