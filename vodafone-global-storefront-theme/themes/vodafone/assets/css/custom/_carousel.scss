@@ -291,8 +291,8 @@
 }
 
 #popularAppsMobile {
-  .carousel-item .list-carousel-item .carousel-item-description {
-    max-height: 65px !important;
+  .carousel-item-description {
+    max-height: 65px;
   }
 }
 
@@ -309,4 +309,8 @@
 
 #featuredPartnersMobile.carousel.low-height {
   min-height: 170px !important;
+}
+
+.carousel.low-height {
+  min-height: 170px;
 }
