@@ -141,7 +141,7 @@
   width: 72%;
   @include media-breakpoint-down(md) {
       width: 100%;
-      margin-left: 0px;
+      margin-left: -3px;
     }
 }
 
@@ -150,7 +150,8 @@
   @include media-breakpoint-down(md) {
     width: 100%;
     margin-top: 25px;
-    margin-left: -10px;
+    display: flex;
+    margin-left: -5px;
   }
 }
 
