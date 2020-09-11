@@ -77,8 +77,9 @@
 .company-manage-list {
   .ad-component--link.ad-component_dropdown--trigger,
   & > .ad-component_list-item--account > .account-link {
-    font-family: VodafoneLight;
+    font-family: VodafoneLight, Arial, sans-serif !important;
     color: $color-mine-shaft;
+    font-size: 14px !important;
 
     &:hover,
     &.ad-component_dropdown--is-active {
