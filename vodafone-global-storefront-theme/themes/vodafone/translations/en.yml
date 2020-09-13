@@ -34,7 +34,7 @@ listing:
   buy_now: 'Buy Now'
 help_menu: 'For help, please click <a href="https://n.vodafone.ie/business/support.html" target="_blank">here</a> to view our support and contact us options
             '
-help_menu_title: 'Need help?'
+help_menu_title: 'Help'
 searchBar:
   placeholder: 'Find Applications'
 register_link: 'https://cloud-marketplace.vodafone.de/vap/#/saas-register'
