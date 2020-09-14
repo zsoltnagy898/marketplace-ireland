@@ -50,6 +50,10 @@
                         {% if edition and edition.callToAction and edition.callToAction.enabled %}
                         <a href="{{edition.callToAction.url}}"
                            role="button"
+                           {% if edition.callToAction.actionType == "LEAD_GEN" %}
+                            data-toggle="modal"
+                            data-target="#leadModal"
+                            {% endif %}
                            class="button button--primary button--full-width">
                             {{i18n[edition.callToAction.actionType] or edition.callToAction.label}}
                         </a>
