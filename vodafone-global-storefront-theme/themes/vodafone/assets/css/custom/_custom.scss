@@ -9124,14 +9124,6 @@ p {
   word-wrap: anywhere;
 }
 
-.lead-gen-product {
-  .profile-edition-item {
-    .profile-edition__action {
-      display: none;
-    }
-  }
-}
-
 .ad-universalnav .company-manage-list-desktop .ad-component--link.ad-component_dropdown--trigger, .ad-universalnav .company-manage-list-desktop>.ad-component_list-item--account>.account-link,
 .ad-universalnav .company-manage-list .ad-component--link.ad-component_dropdown--trigger span, .ad-universalnav .company-manage-list>.ad-component_list-item--account>.account-link span {
   font-family: VodafoneLight, Arial, sans-serif;
@@ -9151,4 +9143,15 @@ p {
   li {
     list-style: none;
   }
+}
+
+.button--cta--bottom {
+  position: absolute;
+  bottom: 0px;
+  left: -4px;
+  width: 100%;
+}
+
+.button--secondary {
+  color: #E60000 !important
 }

@@ -3,7 +3,7 @@
 
 {% from "/macros/analytics.html" import utagDataScript %}
 {% from "/macros/breadcrumb/breadcrumb.html" import breadcrumb %}
-
+{% from "/macros/profile/profile-lead-form.html" import LeadModal %}
 
 {% block contentSection %}
 
@@ -12,6 +12,7 @@
 {% from "/pages/profile/components/reviews.html" import reviews %}
 {% from "/pages/profile/components/policies-support.html" import support %}
 {% from "/pages/profile/components/addons.html" import addons %}
+{% from "/macros/profile/profile-lead-form.html" import leadForm %}
 
 
 {% block content %}
@@ -46,17 +47,17 @@
                 </button>
             </div>
             <form id="leadGenForm" target="targetFrame">
-                <div class="modal-body">
-                    <div class="notification-container hide" id="leadGenNotificationError">
-                        <div class="alert alert-danger">
-                            Please fill the form with valid data.
-                        </div>
+            <div class="modal-body">
+                <div class="notification-container hide" id="leadGenNotificationError">
+                    <div class="alert alert-danger">
+                        Please fill the form with valid data.
                     </div>
-                    <div class="notification-container hide" id="leadGenNotification">
-                        <div class="alert alert-success">
-                            Thank you for your order request, a sales advisor will contact you shortly.
-                        </div>
+                </div>
+                <div class="notification-container hide" id="leadGenNotification">
+                    <div class="alert alert-success">
+                        Thank you for your order request, a sales advisor will contact you shortly.
                     </div>
+                </div>
 
                     <div class="row" id="leadGenFormData">
                         <div class="col-md-6 col-12">
@@ -156,7 +157,7 @@
                     </div>
 
 
-                </div>
+            </div>
             </form>
             <iframe name="targetFrame" src="{{ application.leads.form.actionEndpoint }}" id="targetFrame" width="1" height="1" frameborder="0">
             </iframe>
@@ -178,10 +179,11 @@
             {{ productTabs(application) }}
         </section>
         <section id="Overview" class="section--gutter">
-            {{ productOverview(application) }}
+            {{ productOverview(application, i18n.custom.cta_labels) }}
         </section>
     </div>
 </div>
+
 {% if application.features.items.length > 0 %}
 <section id="Features" class="section section--light-grey">
     {% for navItem in application.navigation.items %}
@@ -193,9 +195,10 @@
     {% endfor %}
 </section>
 {% endif %}
+
 {% if application.editions.items.length > 0 %}
 <section id="Editions" class="section section--white">
-    {{editionsPricing(application.editions)}}
+    {{editionsPricing(application.editions, i18n.custom.cta_labels)}}
 </section>
 {% endif %}
 {% if application.addonProducts.items.length > 0 %}

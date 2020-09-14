@@ -2,7 +2,7 @@
 {% from "/macros/profile/profile-edition-cost.html" import profileEditionCost %}
 {% from "/macros/profile/show-more-edition-item.html" import showMoreEditionItem %}
 
-{% macro profileAddonListItemContent(edition, editions, id, loop, startIndex = 0) %}
+{% macro profileAddonListItemContent(edition, editions, id, loop, startIndex, _, i18n) %}
 <div class="profile-edition{% if edition.primary %} profile-edition--primary{% endif %} profile-edition-content-container w-100 {{id}} p-3">
     <div class="profile-edition__content">
         <div class="profile-edition__prices js-edition-prices">
@@ -39,14 +39,8 @@
              onclick="toggleBulletList({{index}}, '{{id}}')">
             {{showMoreEditionItem(editions)}}
         </div>
-        {% if edition and edition.callToAction %}
-        <div class="profile-edition__action w-100">
-            <a href="{{edition.callToAction.url}}"
-               role="button"
-               class="button button--primary button--full-width">
-                {{edition.callToAction.label}}
-            </a>
-        </div>
+        {% if edition and edition.callToAction and edition.callToAction.enabled %}
+        {{ productActionButton(edition.callToAction, i18n, {lockToBottom: true}) }}
         {% endif %}
     </div>
 </div>
