@@ -10,7 +10,7 @@
 
 {% from "/macros/profile/profile-addon-cost.html" import profileAddonCost %}
 
-{% macro addonProducts(addons) %}
+{% macro addonProducts(addons, i18n) %}
 <div class="container profile-editions">
     {% for addon in addons.items %}
     <div class="row">
@@ -47,11 +47,13 @@
                             </li>
                             {% endif %} {% endfor %}
                         </div>
+                        {% if edition and edition.callToAction and edition.callToAction.enabled %}
                         <a href="{{edition.callToAction.url}}"
                            role="button"
                            class="button button--primary button--full-width">
-                            {{edition.callToAction.label}}
+                            {{i18n[edition.callToAction.actionType] or edition.callToAction.label}}
                         </a>
+                        {% endif %}
                     </div>
                 </div>
                 {% endfor %}
