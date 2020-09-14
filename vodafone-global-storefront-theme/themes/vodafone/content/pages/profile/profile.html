@@ -99,34 +99,18 @@
                                     <input type="{{ application.leads.form.schema.street2.type }}" class="form-control required" id="{{ application.leads.form.schema.street2.title }}">
                                 </div>
                             </fieldset>
-                        </div>
-                        <div class="col-md-6 col-12">
                             <fieldset>
                                 <div class="form-group">
                                     <label for="{{ application.leads.form.schema.city.title }}">{{ application.leads.form.schema.city.title }}</label>
                                     <input required type="{{ application.leads.form.schema.city.type }}" class="form-control required" id="{{ application.leads.form.schema.city.title }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="{{ application.leads.form.schema.state.title }}">{{ application.leads.form.schema.state.title }}</label>
-                                    <select class="form-control required" id="{{ application.leads.form.schema.state.title }}">
-                                        {% for option in application.leads.form.schema.state.options %}
-                                        <option value="{{option.value}}" data-custom-value="{{ option[customValue] }}" {{ "selected" if option.isSelected }}>{{ option.label }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="{{ application.leads.form.schema.province.title }}">{{ application.leads.form.schema.province.title }}</label>
-                                    <select class="form-control required" id="{{ application.leads.form.schema.province.title }}">
-                                        {% for option in application.leads.form.schema.province.options %}
-                                        <option value="{{option.value}}" data-custom-value="{{ option[customValue] }}" {{ "selected" if option.isSelected }}>{{ option.label }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                                <div class="form-group">
                                     <label for="{{ application.leads.form.schema.zip.title }}">{{ application.leads.form.schema.zip.title }}</label>
                                     <input required type="{{ application.leads.form.schema.zip.type }}" class="form-control required" id="{{ application.leads.form.schema.zip.title }}">
                                 </div>
                             </fieldset>
+                        </div>
+                        <div class="col-md-6 col-12">
                             <fieldset>
                                 <div class="form-group">
                                     <label for="{{ application.leads.form.schema.country.title }}">{{ application.leads.form.schema.country.title }}</label>
