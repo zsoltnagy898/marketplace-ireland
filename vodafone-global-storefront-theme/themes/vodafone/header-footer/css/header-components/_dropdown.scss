@@ -1,7 +1,6 @@
 @import "../../../assets/css/custom/variables";
 
-.ad-component_dropdown,
-.ad-component_list-item--channel {
+.ad-component_dropdown {
   display: block;
   position: relative;
 
@@ -117,14 +116,6 @@
 
   .ad-component_dropdown.company-dropdown {
     .ad-component--link.ad-component_dropdown--trigger {
-      &::before {
-        content: url("https://d33na3ni6eqf5j.cloudfront.net/channel_custom_style_resources/img2089366108737461295?b6ce26d98a6cf8310cadb9a94d9ee75c");
-      }
-    }
-  }
-  
-  .ad-component_list-item--channel {
-    .ad-component--link {
       &::before {
         content: url("https://d33na3ni6eqf5j.cloudfront.net/channel_custom_style_resources/img2089366108737461295?b6ce26d98a6cf8310cadb9a94d9ee75c");
       }
