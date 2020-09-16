@@ -32,6 +32,14 @@
             data-toggle="modal"
             data-target="#leadModal"
             {% endif %}
+            {% if cta.actionType == "REQUEST_ACCESS" %}
+            data-toggle="modal"
+            data-target="#requestAccessModal"
+            {% endif %}
+            {% if cta.actionType == "REQUEST_PURCHASE" %}
+            data-toggle="modal"
+            data-target="#requestPurchaseModal"
+            {% endif %}
             >
             {{i18n[cta.actionType] or cta.label }}
             </a>
