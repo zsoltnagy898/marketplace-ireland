@@ -230,25 +230,31 @@
         <section class="container">
             {{ productTabs(application) }}
         </section>
-        <div class="alert alert-success" role="alert">
+        <div id="successMessage" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none">
             <div class="container">
-                <div class="text-center" id="requestPurchaseSuccess">
+                <div class="text-center" id="requestPurchaseSuccess" style="display: none">
                     {{ application.actionMessages.requestPurchaseSuccess }}
                 </div>
-                <div class="text-center" id="requestAccessSuccess">
+                <div class="text-center" id="requestAccessSuccess" style="display: none">
                     {{ application.actionMessages.requestAccessSuccess }}
                 </div>
             </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
-        <div class="alert alert-danger" role="alert">
+        <div id="failureMessage" class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none">
             <div class="container">
-                <div class="text-center" id="requestPurchaseSuccess">
+                <div class="text-center" id="requestPurchaseFail" style="display: none">
                     {{ application.actionMessages.requestPurchaseFail }}
                 </div>
-                <div class="text-center" id="requestAccessSuccess">
+                <div class="text-center" id="requestAccessFail" style="display: none">
                     {{ application.actionMessages.requestAccessFail }}
                 </div>
             </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         <section id="Overview" class="section--gutter">
             {{ productOverview(application, i18n.custom.cta_labels) }}

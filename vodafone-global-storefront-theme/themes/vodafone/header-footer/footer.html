@@ -669,4 +669,15 @@
           $('#leadGenNotification').addClass('hide');
       }
   })
+
+  // Check request and access URL
+  if (window.location.href.indexOf('?purchaseRequested=true') > 0) {
+      $('#successMessage').show();
+      $('#requestPurchaseSuccess').show();
+  }
+
+  if (window.location.href.indexOf('?accessRequested=true') > 0) {
+      $('#successMessage').show();
+      $('#requestAccessSuccess').show();
+  }
 </script>
