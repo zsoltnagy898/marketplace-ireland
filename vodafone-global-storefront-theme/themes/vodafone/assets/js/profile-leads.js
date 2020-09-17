@@ -60,8 +60,8 @@ $.fn.profileLeads = function(options) {
         mainEndpoint = !!options && !!options.endpoint ? options.endpoint : "";
 
         API = new ActionAPI();
-        Notification = $('.js-notification-lead').notificationCtrl();
-        LeadForm = $('#js-profile-lead-form').formCtrl();
+        // Notification = $('.js-notification-lead').notificationCtrl();
+        // LeadForm = $('#js-profile-lead-form').formCtrl();
         initLeadForm();
     };
     init();
