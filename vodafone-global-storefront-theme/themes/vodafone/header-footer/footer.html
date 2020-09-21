@@ -613,13 +613,21 @@
 
     handleScroll();
 
+    function marketButton (channel) {
+      const originalInnerHTML = channel.innerHTML
+      channel.classList.remove('ad-component--link')
+      channel.classList.add("js-profile-current", "js-navigation-link", "navigation__link", "navigation__link--icon")
+      channel.innerHTML = `<img src="https://d33na3ni6eqf5j.cloudfront.net/channel_custom_style_resources/img4119267018191795232?ac6dea6…" alt="marketplace" class="icon-image icon-image--small">
+      <span class="navigation__icon-text navigation-search-text d-none d-lg-block" style="font-family: VodafoneLight">${originalInnerHTML}</span>`
+    }
+
     function navFix () {
       const marketplace = document.querySelector('a[href="/channel/products"]');
       marketplace && marketplace.classList.add('ad-component_dropdown--trigger');
       const developer = document.querySelector('ul.navigation__list > li.ad-component_list-item--developer #developer');
       developer && developer.classList.add('ad-component_dropdown--trigger');
-      const channel = document.querySelector('ul.navigation__list > li.ad-component_list-item--channel');
-      channel && channel.classList.add('ad-component_dropdown--trigger');
+      const channel = document.querySelector('ul.navigation__list > li.ad-component_list-item--channel a');
+      channel && marketButton(channel);
     }
 
     $(document).ready(function() {
@@ -660,13 +668,13 @@
   if (window.location.href.indexOf('?purchaseRequested=true') > 0) {
       $('#successMessage').show();
       $('#requestPurchaseSuccess').show();
-      $('.primaryCTA').addClass('is-disabled');
+      $('.request-button').addClass('is-disabled');
   }
 
   if (window.location.href.indexOf('?accessRequested=true') > 0) {
       $('#successMessage').show();
       $('#requestAccessSuccess').show();
-      $('.primaryCTA').addClass('is-disabled');
+      $('.request-button').addClass('is-disabled');
   }
   
   // disable the disabled buttons

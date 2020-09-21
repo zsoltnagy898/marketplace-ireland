@@ -6,7 +6,7 @@
     <a 
         {% if actionData.enabled and actionData.url %}href="{{ actionData.url }}"{% endif %}
         {% if actionData.eppid %}data-eppid="{{ actionData.eppid }}"{% endif %}
-        class="button mx-1 mb-3 mb-md-0 d-flex align-items-center justify-content-center primaryCTA
+        class="button mx-1 mb-3 mb-md-0 d-flex align-items-center justify-content-center
                 {{ 'button--primary' if actionData.isPrimary }}
                 {{ 'js-profile-lead-form' if actionData.actionType == "LEAD_GEN" }}
                 {{ 'js-profile-upgrade-popup' if actionData.actionType == "CAN_MOSI_UPGRADE" }}
@@ -19,6 +19,7 @@
                 {{ 'button--secondary' if not actionData.isPrimary}}
                 {{ 'is-disabled' if not actionData.enabled}}
                 {{ 'button--cta--bottom' if options.lockToBottom}}
+                {{ 'request-button' if edition.callToAction.actionType == "REQUEST_ACCESS" or edition.callToAction.actionType == "REQUEST_PURCHASE" }}
                 button__profile"
                 aria-label="{{ actionData.label }}"
                 {% if actionData.actionType == "LEAD_GEN" %}

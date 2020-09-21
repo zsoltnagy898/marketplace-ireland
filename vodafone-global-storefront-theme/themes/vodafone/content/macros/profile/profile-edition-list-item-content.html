@@ -52,6 +52,7 @@
                 {% endif %}
                class="button button--primary button--full-width
                 {{ 'is-disabled' if not edition.callToAction.enabled }}
+                {{ 'request-button' if edition.callToAction.actionType == "REQUEST_ACCESS" or edition.callToAction.actionType == "REQUEST_PURCHASE" }}
                 ">
                 {{i18n[edition.callToAction.actionType] or edition.callToAction.label}}
             </a>
