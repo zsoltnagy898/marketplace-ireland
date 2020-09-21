@@ -6,7 +6,7 @@
     <a 
         {% if actionData.enabled and actionData.url %}href="{{ actionData.url }}"{% endif %}
         {% if actionData.eppid %}data-eppid="{{ actionData.eppid }}"{% endif %}
-        class="button mx-1 mb-3 mb-md-0 d-flex align-items-center justify-content-center
+        class="button mx-1 mb-3 mb-md-0 d-flex align-items-center justify-content-center primaryCTA
                 {{ 'button--primary' if actionData.isPrimary }}
                 {{ 'js-profile-lead-form' if actionData.actionType == "LEAD_GEN" }}
                 {{ 'js-profile-upgrade-popup' if actionData.actionType == "CAN_MOSI_UPGRADE" }}

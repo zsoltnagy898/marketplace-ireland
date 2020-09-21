@@ -27,7 +27,7 @@
         </div>
         <div class="col-12 col-lg-4 d-flex justify-content-center">
             {% for cta in application.callToActions.items %}
-            <a href="{{ cta.url }}" role="button" class="button button--primary--white"
+            <a href="{{ cta.url }}" role="button" class="button button--primary--white primaryCTA"
             {% if cta.actionType == "LEAD_GEN" %}
             data-toggle="modal"
             data-target="#leadModal"

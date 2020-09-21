@@ -9159,3 +9159,8 @@ p {
 .alert {
   margin-top: -10px;
 }
+
+.is-disabled {
+  cursor: not-allowed !important;
+  opacity: .8;
+}
