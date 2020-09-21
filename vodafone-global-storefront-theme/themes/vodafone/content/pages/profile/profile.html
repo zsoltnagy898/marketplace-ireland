@@ -56,6 +56,11 @@
                         {{ application.leads.i18n.defaultError }}
                     </div>
                 </div>
+                <div class="notification-container hide" id="leadGenRequestError">
+                    <div class="alert alert-danger">
+                        {{ application.leads.i18n.errorMessage }}
+                    </div>
+                </div>
                 <div class="notification-container hide" id="leadGenNotification">
                     <div class="alert alert-success">
                         {{ application.leads.i18n.sucessMessage }}
@@ -250,8 +255,13 @@
                 i18n: {{ application.leads.i18n | dump | safe }}
             })),
           function() {
+              $('#leadGenNotification').removeClass('hide');
+              $('#leadGenFormData').addClass('hide');
+              $('.modal-footer').addClass('hide');
+              $('#leadGenNotificationError').addClass('hide');
           },
           function() {
+              $('#leadGenRequestError').removeClass('hide');
           }
       );
     }
@@ -260,15 +270,7 @@
         e.preventDefault();
   
         if ($("#leadGenForm").valid()) {
-            //$('#leadGenForm').submit();
             submitLead()
-            $('#leadGenNotification').removeClass('hide');
-            $('#leadGenFormData').addClass('hide');
-            $('.modal-footer').addClass('hide');
-            $('#leadGenNotificationError').addClass('hide');
-        } else {
-            $('#leadGenNotificationError').removeClass('hide');
-            $('#leadGenNotification').addClass('hide');
         }
     })
   </script>
