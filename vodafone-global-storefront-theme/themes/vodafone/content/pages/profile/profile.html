@@ -172,15 +172,15 @@
                 {% set msg = currentCta.popup %}
                 {% endif %}
                 {% endfor %}
-                Message: {{ msg }}
+                Message: {{ msg | dump }}
             </div>
             <div class="modal-footer">
                 <div class="row">
                     <div class="col-md-6 col-12 text-left">
                         {% set cta = {} %}
                         {% for currentCta in application.callToActions.items %}
-                        {% if currentCta.actionType == 'REQUEST_PURCHASE' %}
-                            {% set cta = currentCta.callToAction %}
+                        {% if currentCta.actionType == "REQUEST_PURCHASE" %}
+                            {% set cta = currentCta %}
                         {% endif %}
                         {% endfor %}
                         <a href="{{cta.url}}" type="button" class="button button--primary button--full-width">Yes</a>
@@ -214,7 +214,7 @@
                 {% set msg = currentCta.popup %}
                 {% endif %}
                 {% endfor %}
-                Message: {{ msg }}
+                Message: {{ msg | dump }}
             </div>
             <div class="modal-footer">
                 <div class="row">
@@ -222,7 +222,7 @@
                         {% set cta = {} %}
                         {% for currentCta in application.callToActions.items %}
                         {% if currentCta.actionType == 'REQUEST_ACCESS' %}
-                        {% set cta = currentCta.callToAction %}
+                        {% set cta = currentCta %}
                         {% endif %}
                         {% endfor %}
                         <a href="{{cta.url}}" type="button" class="button button--primary button--full-width">Yes</a>
