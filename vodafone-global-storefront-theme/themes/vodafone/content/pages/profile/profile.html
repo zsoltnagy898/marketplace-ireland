@@ -45,7 +45,7 @@
                 <h5 class="modal-title" id="exampleModalLabel">
                     {{ application.leads.form.otherData.profileProduct.name }}
                 </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="{{ application.leads.i18n.cancel }}">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -53,12 +53,12 @@
             <div class="modal-body">
                 <div class="notification-container hide" id="leadGenNotificationError">
                     <div class="alert alert-danger">
-                        Please fill the form with valid data.
+                        {{ application.leads.i18n.defaultError }}
                     </div>
                 </div>
                 <div class="notification-container hide" id="leadGenNotification">
                     <div class="alert alert-success">
-                        Thank you for your order request, a sales advisor will contact you shortly.
+                        {{ application.leads.i18n.sucessMessage }}
                     </div>
                 </div>
 
@@ -102,6 +102,8 @@
                                     <input type="{{ application.leads.form.schema.street2.type }}" class="form-control required" name="{{ application.leads.form.schema.street2.name }}">
                                 </div>
                             </fieldset>
+                        </div>
+                        <div class="col-md-6 col-12">
                             <fieldset>
                                 <div class="form-group">
                                     <label for="{{ application.leads.form.schema.city.title }}">{{ application.leads.form.schema.city.title }}</label>
@@ -112,8 +114,6 @@
                                     <input required type="{{ application.leads.form.schema.zip.type }}" class="form-control required" name="{{ application.leads.form.schema.zip.name }}">
                                 </div>
                             </fieldset>
-                        </div>
-                        <div class="col-md-6 col-12">
                             <fieldset>
                                 <div class="form-group">
                                     <label for="{{ application.leads.form.schema.country.title }}">{{ application.leads.form.schema.country.title }}</label>
@@ -135,8 +135,8 @@
                                             id="{{ application.leads.form.schema.notes.name }}"
                                             type="text"
                                             val=""
-                                            placeholder="{{ application.leads.form.editorAttrs.placeholder }}"
-                                            maxlength="{{ application.leads.form.editorAttrs.maxlength }}"
+                                            placeholder="{{ application.leads.form.schema.notes.editorAttrs.placeholder }}"
+                                            maxlength="{{ application.leads.form.schema.notes.editorAttrs.maxlength }}"
                                     ></textarea>
                                 </div>
                             </fieldset>
@@ -147,7 +147,9 @@
             </div>
             </form>
             <div class="modal-footer">
-                <button id="submitLeadGen" type="button" class="button button--primary button--full-width">Submit</button>
+                <button id="submitLeadGen" type="button" class="button button--primary button--full-width">
+                    {{ application.leads.i18n.submit }}
+                </button>
             </div>
 
         </div>
