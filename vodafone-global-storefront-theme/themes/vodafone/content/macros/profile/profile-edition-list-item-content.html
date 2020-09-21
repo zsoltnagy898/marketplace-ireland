@@ -42,7 +42,7 @@
              onclick="toggleBulletList({{index}}, '{{id}}')">
             {{showMoreEditionItem(editions)}}
         </div>
-        {% if edition and edition.callToAction and edition.callToAction.enabled %}
+        {% if edition and edition.callToAction %}
         <div class="profile-edition__action w-100">
             <a href="{{edition.callToAction.url}}"
                role="button"
@@ -50,7 +50,9 @@
                 data-toggle="modal"
                 data-target="#leadModal"
                 {% endif %}
-               class="button button--primary button--full-width">
+               class="button button--primary button--full-width
+                {{ 'is-disabled' if not edition.callToAction.enabled }}
+                ">
                 {{i18n[edition.callToAction.actionType] or edition.callToAction.label}}
             </a>
         </div>
