@@ -34,9 +34,6 @@
     <meta property="twitter:creator" content="">
     {% endblock %}
 
-    {# Tealium sync #}
-    <script src="//tags.tiqcdn.com/utag/vodafone/uk-main/prod/utag.sync.js"></script>
-
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
@@ -113,21 +110,6 @@
 
 {% block analytics_data %}
 {% endblock %}
-
-{# Tealium universal tag loader #}
-<script>
-    (function (a, b, c, d) {
-        a = '//tags.tiqcdn.com/utag/vodafone/uk-main/prod/utag.js';
-        b = document;
-        c = 'script';
-        d = b.createElement(c);
-        d.src = a;
-        d.type = 'text/java' + c;
-        d.async = true;
-        a = b.getElementsByTagName(c)[0];
-        a.parentNode.insertBefore(d, a);
-    })();
-</script>
 
 <script>
 

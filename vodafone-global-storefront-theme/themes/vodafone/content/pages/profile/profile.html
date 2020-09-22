@@ -172,14 +172,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                Request Purchase
-                {% set msg = {} %}
-                {% for currentMsg in application.callToActions.items %}
-                {% if currentMsg.actionType == 'REQUEST_PURCHASE' %}
-                {% set msg = currentCta.popup %}
-                {% endif %}
-                {% endfor %}
-                Message: {{ msg | dump }}
+                {{ application.callToActions.caption.text }}
             </div>
             <div class="modal-footer">
                 <div class="row">
@@ -190,10 +183,14 @@
                             {% set cta = currentCta %}
                         {% endif %}
                         {% endfor %}
-                        <a href="{{cta.url}}" type="button" class="button button--primary button--full-width">Yes</a>
+                        <a href="{{cta.url}}" type="button" class="button button--primary button--full-width">
+                            {{ msg.i18n.select }}
+                        </a>
                     </div>
                     <div class="col-md-6 col-12 text-right">
-                        <button type="button" class="button button--secondary button--full-width" data-dismiss="modal">No</button>
+                        <button type="button" class="button button--secondary button--full-width" data-dismiss="modal">
+                            {{ msg.i18n.cancel }}
+                        </button>
                     </div>
                 </div>
             </div>
@@ -213,29 +210,31 @@
                 </button>
             </div>
             <div class="modal-body">
-                Request Access
-                Request Purchase
-                {% set msg = {} %}
-                {% for currentMsg in application.callToActions.items %}
-                {% if currentMsg.actionType == 'REQUEST_ACCESS' %}
-                {% set msg = currentCta.popup %}
+                {% set cta = null %}
+                {% if application.callToAction.actionType == 'REQUEST_ACCESS' %}
+                    {% set cta = application.callToAction %}
+                {% endif%}
+                {% if not cta %}
+                    {% for edition in application.editions.items %}
+                        {% if edition.callToAction.actionType == 'REQUEST_ACCESS' %}
+                            {% set cta = edition.callToAction %}
+                        {% endif %}
+                    {% endfor %}
                 {% endif %}
-                {% endfor %}
-                Message: {{ msg | dump }}
+                {{ cta.popup.text }}
             </div>
             <div class="modal-footer">
                 <div class="row">
                     <div class="col-md-6 col-12 text-left">
-                        {% set cta = {} %}
-                        {% for currentCta in application.callToActions.items %}
-                        {% if currentCta.actionType == 'REQUEST_ACCESS' %}
-                        {% set cta = currentCta %}
-                        {% endif %}
-                        {% endfor %}
-                        <a href="{{cta.url}}" type="button" class="button button--primary button--full-width">Yes</a>
+
+                        <a href="{{cta.url}}" type="button" class="button button--primary button--full-width">
+                            {{ cta.popup.i18n.select }}
+                        </a>
                     </div>
                     <div class="col-md-6 col-12 text-right">
-                        <button type="button" class="button button--secondary button--full-width" data-dismiss="modal">No</button>
+                        <button type="button" class="button button--secondary button--full-width" data-dismiss="modal">
+                            {{ cta.popup.i18n.cancel }}
+                        </button>
                     </div>
                 </div>
             </div>
@@ -286,7 +285,7 @@
         <div id="successMessage" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none">
             <div class="container">
                 <div class="text-center" id="requestPurchaseSuccess" style="display: none">
-                    {{ application.actionMessages.requestPurchaseSuccess }}
+                    {{ application.callToActions.caption.text }}
                 </div>
                 <div class="text-center" id="requestAccessSuccess" style="display: none">
                     {{ application.actionMessages.requestAccessSuccess }}
@@ -345,10 +344,6 @@
     {% endif %}
     <!--    <Toaster :application="{{ application|dump }}"></Toaster>-->
 </div>
-<section>
-    <h1>dump app</h1><br>
-    {{ application | dump | safe }}
-</section>
 {% endblock %}
 
 {% endblock %}

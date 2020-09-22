@@ -27,6 +27,10 @@
                 data-target="#leadModal"
                 role="button"
                 {% endif %}
+                {% if actionData.actionType == "REQUEST_ACCESS" %}
+                data-toggle="modal"
+                data-target="#requestAccessModal"
+                {% endif %}
     >
         {% if options.icon %}
         <svg focusable="false" aria-hidden="true" class="icon icon--small mr-3">
