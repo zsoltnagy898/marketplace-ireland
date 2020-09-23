@@ -25,7 +25,19 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-4 d-flex justify-content-center">
+        <div class="col-12 col-lg-4">
+            {% set ownedPrinted = false%}
+            {% for cta in application.callToActions.items %}
+                {% if cta.actionType == "REQUEST_ACCESS" and not ownedPrinted %}
+                    <div class="row owned-product"><small>{{ i18n.request_access }}</small></div>
+                    {% set ownedPrinted = true%}
+                {% endif %}
+            {% if cta.actionType == "REQUEST_PURCHASE" and not ownedPrinted %}
+                    <div class="row owned-product"><small>{{ i18n.request_puchase }}</small></div>
+                    {% set ownedPrinted = true%}
+                {% endif %}
+            {% endfor %}
+            <div class="row d-flex justify-content-center">
             {% for cta in application.callToActions.items %}
             <a href="{{ cta.url }}" role="button" class="button button--primary--white
             {{ 'request-button' if edition.callToAction.actionType == "REQUEST_ACCESS" or edition.callToAction.actionType == "REQUEST_PURCHASE" }}
@@ -42,6 +54,7 @@
             {{i18n[cta.actionType] or cta.label }}
             </a>
             {% endfor %}
+            </div>
         </div>
     </div>
 </div>

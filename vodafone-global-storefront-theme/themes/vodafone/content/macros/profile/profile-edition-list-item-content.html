@@ -42,7 +42,7 @@
              onclick="toggleBulletList({{index}}, '{{id}}')">
             {{showMoreEditionItem(editions)}}
         </div>
-        {% if edition and edition.callToAction %}
+        {% if edition and edition.callToAction and edition.callToAction.label %}
         <div class="profile-edition__action w-100">
             <a href="{{edition.callToAction.url}}"
                role="button"

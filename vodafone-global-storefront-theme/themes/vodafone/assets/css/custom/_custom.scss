@@ -9160,3 +9160,12 @@ p {
   cursor: not-allowed !important;
   opacity: .8;
 }
+
+label.error {
+  color: #E60000;
+  font-size: 14px;
+}
+
+.owned-product {
+  display: block;
+}
