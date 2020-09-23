@@ -39,8 +39,6 @@ searchBar:
   placeholder: 'Find Applications'
 register_link: 'https://cloud-marketplace.vodafone.de/vap/#/saas-register'
 register_text: 'Register'
-request_access: Your company already has this application
-request_puchase: Your company admin will receive your request and can then purchase the product for you
 cta_labels:
   LEAD_GEN: 'Call me Back'
   
