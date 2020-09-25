@@ -33,8 +33,8 @@
                     {% set currentElementNumber = 0 %}
                     <div class="col-md-6 col-12">
                     {% for key, val in schema %}
+                        {% if key != "custom" %}
                         <fieldset>
-                            {% if key != "custom" %}
                             <div class="form-group">
                                 <label for="{{ schema[key].name }}">{{ '*' if schema[key].isRequired }} {{ schema[key].title }}</label>
                                 {% if schema[key].type == "StyledSelect" %}
@@ -52,17 +52,25 @@
                                         name="{{ schema[key].name }}"
                                         id="{{ schema[key].name }}"
                                         type="text"
-                                        val=""
-                                        placeholder="{{ schema[key].editorAttrs.placeholder }}"
-                                        maxlength="{{ schema[key].editorAttrs.maxlength }}"
+                                        {% for attrKey, attrVal in schema[key].editorAttrs %}
+                                        {{attrKey}}="{{attrVal}}"
+                                        {% endfor %}
                                         {{ 'required' if schema[key].isRequired }}
                                 ></textarea>
                                 {% else %}
-                                <input {{ 'required' if schema[key].isRequired }} type="{{ schema[key].type }}" class="form-control {{ 'required' if schema[key].isRequired }}" name="{{ schema[key].name }}">
+                                <input
+                                    {{ 'required' if schema[key].isRequired }}
+                                    type="{{ schema[key].type }}"
+                                    class="form-control {{ 'required' if schema[key].isRequired }}"
+                                    name="{{ schema[key].name }}"
+                                    {% for attrKey, attrVal in schema[key].editorAttrs %}
+                                    {{attrKey}}="{{attrVal}}"
+                                    {% endfor %}
+                                >
                                 {% endif %}
                             </div>
-                            {% endif %}
                         </fieldset>
+                        {% endif %}
                         {% set currentElementNumber = currentElementNumber + 1 %}
                         {% if currentElementNumber == totalElements / 2 | int %}
                     </div>
@@ -73,7 +81,11 @@
                         <fieldset>
                             <div class="form-group">
                                 <label for="{{ item.name }}">{{ '* ' if item.isRequired }}{{ item.title }}</label>
-                                <input {{ 'required' if item.isRequired }} type="{{ item.type }}" class="form-control {{ 'required' if item.isRequired }}" name="{{ item.name }}">
+                                <input 
+                                {{ 'required' if item.isRequired }}
+                                type="{{ item.type }}"
+                                class="form-control {{ 'required' if item.isRequired }}"
+                                name="{{ item.name }}">
                             </div>
                         </fieldset>
                         {% set currentElementNumber = currentElementNumber + 1 %}
