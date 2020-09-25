@@ -88,7 +88,7 @@ var leadParser = {
                 firstName: data.firstName,
                 lastName: data.lastName,
                 email: data.email,
-                phone: $('.js-form-phone').data('prefix') + data.phone,
+                phone: data.phone,
                 phoneExtension: ''
             }
         };

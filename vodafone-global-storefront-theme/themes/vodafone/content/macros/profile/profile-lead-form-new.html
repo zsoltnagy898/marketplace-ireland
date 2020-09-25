@@ -1,0 +1,98 @@
+{% macro leadForm(leads) %}
+<div class="modal  fade" id="leadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">
+                    {{ leads.form.otherData.profileProduct.name }}
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="{{ application.leads.i18n.cancel }}">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="leadGenForm" action="{{ application.leads.form.actionEndpoint }}">
+            <div class="modal-body">
+                <div class="notification-container hide" id="leadGenNotificationError">
+                    <div class="alert alert-danger">
+                        {{ leads.i18n.defaultError }}
+                    </div>
+                </div>
+                <div class="notification-container hide" id="leadGenRequestError">
+                    <div class="alert alert-danger">
+                        {{ leads.i18n.errorMessage }}
+                    </div>
+                </div>
+                <div class="notification-container hide" id="leadGenNotification">
+                    <div class="alert alert-success">
+                        {{ leads.i18n.sucessMessage }}
+                    </div>
+                </div>
+                <div class="row" id="leadGenFormData">
+                    {% set schema = leads.form.schema %}
+                    {% set totalElements = schema | length + schema.custom | length - 1 %}
+                    {% set currentElementNumber = 0 %}
+                    <div class="col-md-6 col-12">
+                    {% for key, val in schema %}
+                        <fieldset>
+                            {% if key != "custom" %}
+                            <div class="form-group">
+                                <label for="{{ schema[key].name }}">{{ '*' if schema[key].isRequired }} {{ schema[key].title }}</label>
+                                {% if schema[key].type == "StyledSelect" %}
+                                <select {{ 'required' if schema[key].isRequired }} class="form-control {{ 'required' if schema[key].isRequired }}" id="{{ schema[key].name }}">
+                                    {% if schema[key].includeEmptyOption %}
+                                    <option value="" selected></option>
+                                    {% endif %}
+                                    {% for option in schema[key].options %}
+                                    <option value="{{option.value}}" data-custom-value="{{ option[customValue] }}" {{ "selected" if option.isSelected }}>{{ option.label }}</option>
+                                    {% endfor %}
+                                </select>
+                                {% elif schema[key].type == "TextArea" %}
+                                <textarea
+                                        class="form-control"
+                                        name="{{ schema[key].name }}"
+                                        id="{{ schema[key].name }}"
+                                        type="text"
+                                        val=""
+                                        placeholder="{{ schema[key].editorAttrs.placeholder }}"
+                                        maxlength="{{ schema[key].editorAttrs.maxlength }}"
+                                        {{ 'required' if schema[key].isRequired }}
+                                ></textarea>
+                                {% else %}
+                                <input {{ 'required' if schema[key].isRequired }} type="{{ schema[key].type }}" class="form-control {{ 'required' if schema[key].isRequired }}" name="{{ schema[key].name }}">
+                                {% endif %}
+                            </div>
+                            {% endif %}
+                        </fieldset>
+                        {% set currentElementNumber = currentElementNumber + 1 %}
+                        {% if currentElementNumber == totalElements / 2 | int %}
+                    </div>
+                    <div class="col-md-6 col-12">
+                        {% endif %}
+                        {% endfor %}
+                        {% for item in leads.form.schema.custom %}
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="{{ item.name }}">{{ '* ' if item.isRequired }}{{ item.title }}</label>
+                                <input {{ 'required' if item.isRequired }} type="{{ item.type }}" class="form-control {{ 'required' if item.isRequired }}" name="{{ item.name }}">
+                            </div>
+                        </fieldset>
+                        {% set currentElementNumber = currentElementNumber + 1 %}
+                        {% if currentElementNumber == totalElements / 2 | int %}
+                    </div>
+                    <div class="col-md-6 col-12">
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            </form>
+            <div class="modal-footer">
+                <button id="submitLeadGen" type="button" class="button button--primary button--full-width">
+                    {{ leads.i18n.submit }}
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endmacro %}
