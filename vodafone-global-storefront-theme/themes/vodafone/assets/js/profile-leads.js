@@ -4,13 +4,13 @@ $.fn.profileLeads = function(options) {
     var API = {};
     var Notification = {};
     var mainEndpoint = "";
-    var $container = $("#lead-form-modal");
+    var $container = $("#leadModal");
 
     var toggleStates = function() {
         var selectedCountry = $container.find('select[name=country]').val();
         var selectedPhoneCode = $container.find('select[name=country] option:selected').data('custom-value')
-        var provinceSection = $container.find('.js-form-province');
-        var stateSection = $container.find('.js-form-state');
+        var provinceSection = $container.find('#province').parent();
+        var stateSection = $container.find('#state');
         provinceSection.addClass("hidden");
         stateSection.addClass("hidden");
         
@@ -20,8 +20,7 @@ $.fn.profileLeads = function(options) {
         if (selectedCountry === "CA" || selectedCountry === "CAN") {
             provinceSection.removeClass("hidden");
         }
-        $('.js-form-phone .js-prefix').html("+" + selectedPhoneCode);
-        $('.js-form-phone').data('prefix', "+" + selectedPhoneCode)
+        $('#phone').data('prefix', "+" + selectedPhoneCode)
     }
 
     var initLeadForm = function() {
@@ -88,7 +87,7 @@ var leadParser = {
                 firstName: data.firstName,
                 lastName: data.lastName,
                 email: data.email,
-                phone: data.phone,
+                phone: $('#phone').data('prefix') + data.phone,
                 phoneExtension: ''
             }
         };

@@ -154,6 +154,31 @@
             submitLead()
         }
     })
+
+    var toggleStates = function() {
+        var $container = $("#leadModal");
+        var selectedCountry = $container.find('#country').val();
+        var selectedPhoneCode = $container.find('#country option:selected').data('custom-value')
+        var provinceSection = $container.find('#province').parent();
+        var stateSection = $container.find('#state').parent();
+        provinceSection.addClass("hidden");
+        stateSection.addClass("hidden");
+        
+        if (selectedCountry === "US" || selectedCountry === "USA") {
+            stateSection.removeClass("hidden");
+        }
+        if (selectedCountry === "CA" || selectedCountry === "CAN") {
+            provinceSection.removeClass("hidden");
+        }
+        $('#prefix').html("+" + selectedPhoneCode);
+        $('#phone').data('prefix', "+" + selectedPhoneCode)
+    }
+    $(document).ready(function () {
+        toggleStates()
+        $(document).find('#country').change(function (e) {
+            toggleStates()
+        })
+    })
   </script>
 <section class="position-relative section--white p-0">
     <img src="{{r('/assets/images/banner-2-red.png')}}" style="width: 100%;" class="section-bg"/>

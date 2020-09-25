@@ -37,13 +37,15 @@
                         <fieldset>
                             <div class="form-group">
                                 <label for="{{ schema[key].name }}">{{ '*' if schema[key].isRequired }} {{ schema[key].title }}</label>
-                                {% if schema[key].type == "StyledSelect" %}
-                                <select {{ 'required' if schema[key].isRequired }} class="form-control {{ 'required' if schema[key].isRequired }}" id="{{ schema[key].name }}">
+                                {% if schema[key].type == "StyledSelect" or schema[key].type == "Select" %}
+                                <select {{ 'required' if schema[key].isRequired }}
+                                    class="form-control {{ 'required' if schema[key].isRequired }}"
+                                    id="{{ schema[key].name }}">
                                     {% if schema[key].includeEmptyOption %}
                                     <option value="" selected></option>
                                     {% endif %}
                                     {% for option in schema[key].options %}
-                                    <option value="{{option.value}}" data-custom-value="{{ option[customValue] }}" {{ "selected" if option.isSelected }}>{{ option.label }}</option>
+                                    <option value="{{option.value}}" data-custom-value="{{ option.phoneCode }}" {{ "selected" if option.isSelected }}>{{ option.label }}</option>
                                     {% endfor %}
                                 </select>
                                 {% elif schema[key].type == "TextArea" %}
@@ -58,21 +60,31 @@
                                         {{ 'required' if schema[key].isRequired }}
                                 ></textarea>
                                 {% else %}
+                                {% if schema[key].name == "phone" %}
+                                <div class="input-group" style="padding-right: 0">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="prefix"></span>
+                                </div>
+                                {% endif %}
                                 <input
                                     {{ 'required' if schema[key].isRequired }}
                                     type="{{ schema[key].type }}"
                                     class="form-control {{ 'required' if schema[key].isRequired }}"
                                     name="{{ schema[key].name }}"
+                                    id="{{ schema[key].name }}"
                                     {% for attrKey, attrVal in schema[key].editorAttrs %}
                                     {{attrKey}}="{{attrVal}}"
                                     {% endfor %}
                                 >
+                                {% if schema[key].name == "phone" %}
+                                </div>
+                                {% endif %}
                                 {% endif %}
                             </div>
                         </fieldset>
                         {% endif %}
                         {% set currentElementNumber = currentElementNumber + 1 %}
-                        {% if currentElementNumber == totalElements / 2 | int %}
+                        {% if currentElementNumber == (totalElements / 2) | int %}
                     </div>
                     <div class="col-md-6 col-12">
                         {% endif %}
