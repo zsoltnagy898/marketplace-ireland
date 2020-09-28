@@ -26,9 +26,6 @@
             </div>
         </div>
         <div class="col-12 col-lg-4">
-            {% if application.callToActions.caption.text %}
-            <div class="row owned-product"><small>{{ application.callToActions.caption.text }}</small></div>
-            {% endif %}
             <div class="row d-flex justify-content-center">
             {% for cta in application.callToActions.items %}
             <a href="{{ cta.url }}" role="button" class="button button--primary--white
@@ -47,6 +44,9 @@
             </a>
             {% endfor %}
             </div>
+            {% if application.callToActions.caption.text %}
+            <div class="row owned-product"><small>{{ application.callToActions.caption.text | safe }}</small></div>
+            {% endif %}
         </div>
     </div>
 </div>
