@@ -40,9 +40,10 @@
                                 {% if schema[key].type == "StyledSelect" or schema[key].type == "Select" %}
                                 <select {{ 'required' if schema[key].isRequired }}
                                     class="form-control {{ 'required' if schema[key].isRequired }}"
-                                    id="{{ schema[key].name }}">
+                                    id="{{ schema[key].name }}"
+                                    name="{{ schema[key].name }}">
                                     {% if schema[key].includeEmptyOption %}
-                                    <option value="" selected></option>
+                                    <option value="">{{schema[key].emptyOptionLabel}}</option>
                                     {% endif %}
                                     {% for option in schema[key].options %}
                                     <option value="{{option.value}}" data-custom-value="{{ option.phoneCode }}" {{ "selected" if option.isSelected }}>{{ option.label }}</option>
