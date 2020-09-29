@@ -249,7 +249,9 @@
         {{ productSupport(application) }}
     </section>
     {% endif %}
-    <!--    <Toaster :application="{{ application|dump }}"></Toaster>-->
+    {% if not ENV_PROD %}
+    <!--    <Toaster :application="{{ application | dump }}"></Toaster> -->
+    {% endif %}
 </div>
 {% endblock %}
 
