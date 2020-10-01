@@ -67,8 +67,24 @@ $primaryBoxShadow: 0 0 11px 0 rgba(black, 0.43);
         background-color: $color-light-grey;
       }
     }
+    .profile-edition-header-container-bottom-mask-top {
+      position: absolute;
+      height: 13px;
+      width: 269px;
+      bottom: 100%;
+      left: 0;
+      background-color: $color-light-grey;
+      margin: 0 .5rem;
+    }
+    &.profile-edition-content-container-middle {
+      box-shadow: $defaultBoxShadow;
+      background: $color-light-grey;
 
-    &.profile-edition-content-container {
+      &.profile-edition--primary {
+        box-shadow: $primaryBoxShadow;
+      }
+    }
+    &.profile-edition-content-container-bottom {
       background: $color-light-grey;
       border-bottom-left-radius: 6px;
       border-bottom-right-radius: 6px;
@@ -84,16 +100,16 @@ $primaryBoxShadow: 0 0 11px 0 rgba(black, 0.43);
     .profile-edition__content {
       position: relative;
       height: 100%;
-      padding-bottom: 46px;
+      // padding-bottom: 46px;
 
-      .profile-edition__action {
-        position: absolute;
-        bottom: 0;
+      // .profile-edition__action {
+      //   position: absolute;
+      //   bottom: 0;
 
-        .button {
-          margin-bottom: 0 !important;
-        }
-      }
+      //   .button {
+      //     margin-bottom: 0 !important;
+      //   }
+      // }
 
       .profile-checklist {
         .amount,

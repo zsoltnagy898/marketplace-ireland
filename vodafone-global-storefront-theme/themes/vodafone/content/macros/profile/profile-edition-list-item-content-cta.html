@@ -1,0 +1,31 @@
+{% from "/macros/profile/profile-edition-details.html" import profileEditionDetails %}
+{% from "/macros/profile/profile-edition-cost.html" import profileEditionCost %}
+{% from "/macros/profile/show-more-edition-item.html" import showMoreEditionItem %}
+
+{% macro profileEditionListItemContentCTA(edition, editions, id, externalLoop, startIndex, i18n) %}
+<div class="profile-edition{% if edition.primary %} profile-edition--primary{% endif %} profile-edition-content-container-bottom w-100 {{id}} p-3">
+    <div class="profile-edition__content">
+        {% if edition and edition.callToAction and edition.callToAction.label %}
+        <div class="profile-edition__action w-100">
+            <a href="{{edition.callToAction.url}}"
+               role="button"
+               {% if edition.callToAction.actionType == "LEAD_GEN" %}
+                data-toggle="modal"
+                data-target="#leadModal"
+                {% endif %}
+                {% if edition.callToAction.actionType == "REQUEST_ACCESS" %}
+                data-toggle="modal"
+                data-target="#requestAccessModal"
+                {% endif %}
+               class="button button--primary button--full-width
+                {{ 'is-disabled' if not edition.callToAction.enabled }}
+                {{ 'request-button' if edition.callToAction.actionType == "REQUEST_ACCESS" or edition.callToAction.actionType == "REQUEST_PURCHASE" }}
+                ">
+                {{i18n[edition.callToAction.actionType] or edition.callToAction.label}}
+            </a>
+        </div>
+        {% endif %}
+    </div>
+    <div class="profile-edition-header-container-bottom-mask-top"></div>
+</div>
+{% endmacro %}

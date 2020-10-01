@@ -1,0 +1,19 @@
+{% from "/macros/profile/profile-edition-details.html" import profileEditionDetails %}
+{% from "/macros/profile/profile-edition-cost.html" import profileEditionCost %}
+{% from "/macros/profile/show-more-edition-item.html" import showMoreEditionItem %}
+
+{% macro profileEditionListItemContentDetails(edition, editions, id, externalLoop, startIndex, i18n) %}
+<div class="profile-edition{% if edition.primary %} profile-edition--primary{% endif %} profile-edition-content-container-middle w-100 {{id}} px-3">
+    <div class="profile-edition__content">
+        <div class="profile-edition__details profile-edition__bullets js-edition-bullets position-relative">
+            {{ profileEditionDetails(edition.bullets) }}
+        </div>
+        {% set index = loop.index0 + startIndex %}
+        <div class="js-edition-bullets-toggle"
+             onclick="toggleBulletList({{index}}, '{{id}}')">
+            {{showMoreEditionItem(editions)}}
+        </div>
+    </div>
+    <div class="profile-edition-header-container-bottom-mask-top"></div>
+</div>
+{% endmacro %}

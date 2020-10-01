@@ -1,0 +1,16 @@
+{% from "/macros/profile/profile-edition-details.html" import profileEditionDetails %}
+{% from "/macros/profile/profile-edition-cost.html" import profileEditionCost %}
+{% from "/macros/profile/show-more-edition-item.html" import showMoreEditionItem %}
+
+{% macro profileEditionListItemContentIncludes(edition, editions, id, externalLoop, startIndex, i18n) %}
+<div class="profile-edition{% if edition.primary %} profile-edition--primary{% endif %} profile-edition-content-container-middle w-100 {{id}} px-3">
+    <div class="profile-edition__content">
+        {% if edition.items.length %}
+        <div class="profile-edition__details">
+            {{ profileEditionDetails(edition.items, editions.i18n.inclusions) }}
+        </div>
+        {% endif %}
+    </div>
+    <div class="profile-edition-header-container-bottom-mask-top"></div>
+</div>
+{% endmacro %}
