@@ -9170,10 +9170,16 @@ label.error {
 }
 
 .profile-edition.profile-edition-content-container.w-100.mobile.px-3 {
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.15);
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.15);
     background: #F9F9F9;
     padding-top: 15px;
     padding-bottom: 15px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.profile-edition.profile-edition--primary.profile-edition-content-container.w-100.mobile.px-3 {
+    box-shadow: 0 0 11px 0 rgba(black, 0.43);
 }
 
 .lead-form-hint {

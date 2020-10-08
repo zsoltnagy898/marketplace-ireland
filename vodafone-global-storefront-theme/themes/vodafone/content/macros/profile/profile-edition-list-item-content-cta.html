@@ -21,7 +21,11 @@
                 {{ 'is-disabled' if not edition.callToAction.enabled }}
                 {{ 'request-button' if edition.callToAction.actionType == "REQUEST_ACCESS" or edition.callToAction.actionType == "REQUEST_PURCHASE" }}
                 ">
+                {% if editions.i18n.addnow and edition.callToAction.actionType == "BUY" %}
+                {{ editions.i18n.addnow }}
+                {% else %}
                 {{i18n[edition.callToAction.actionType] or edition.callToAction.label}}
+                {% endif %}
             </a>
         </div>
         {% endif %}

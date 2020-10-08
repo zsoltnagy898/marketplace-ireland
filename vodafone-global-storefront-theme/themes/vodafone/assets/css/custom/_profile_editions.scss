@@ -70,7 +70,7 @@ $primaryBoxShadow: 0 0 11px 0 rgba(black, 0.43);
     .profile-edition-header-container-bottom-mask-top {
       position: absolute;
       height: 13px;
-      width: 269px;
+      width: calc(100% - 1rem);
       bottom: 100%;
       left: 0;
       background-color: $color-light-grey;

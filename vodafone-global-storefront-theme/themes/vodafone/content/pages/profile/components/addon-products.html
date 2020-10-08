@@ -1,72 +1,105 @@
 {% extends "/layout/profile.html" %}
 
-{% from "/macros/profile/profile-edition-list.html" import profileEditionList %}
+{% from "/macros/profile/profile-addon-list.html" import profileAddonList %}
 {% from "/macros/profile/profile-edition-list-item-header.html" import profileEditionListItemHeader %}
-{% from "/macros/profile/profile-addon-list-item-header.html" import profileAddonListItemHeader %}
 {% from "/macros/profile/profile-edition-list-item-content.html" import profileEditionListItemContent %}
-{% from "/macros/profile/profile-addon-list-item-content.html" import profileAddonListItemContent %}
 {% from "/macros/profile/show-more-edition-item.html" import showMoreEditionItem %}
-{% from "/macros/profile/profile-edition-cost.html" import profileEditionCost %}
 
-{% from "/macros/profile/profile-addon-cost.html" import profileAddonCost %}
-
-{% macro addonProducts(addons, i18n) %}
+{% macro addonProducts(editions, i18n) %}
 <div class="container profile-editions">
-    {% for addon in addons.items %}
     <div class="row">
         <div class="col-12">
-            <div class="row">
-                <h3 class="text-center heading heading--3 heading--center heading--leading px-1">
-                    {{ addon.name }}
-                </h3>
-            </div>
-            <div class="row justify-content-center flex-column-reverse flex-lg-row">
-                {% for edition in addon.edition %}
-                <div class="col-12 profile-edition-item mb-3 col-lg-3">
-                    {{profileEditionListItemHeader(edition)}}
-                    <div class="profile-edition__action profile-addons__action w-100">
-                        <div class="pricing-row">
-                            {% set planCount = edition.plans.length %}
-                            {% for plan in edition.plans %}
-                            {% if plan.costs and plan.costs.unitPrice %}
-                            {% for unitPrice in plan.costs.unitPrice %}
-                            {% for usageRange in unitPrice.usageRange %}
-                            {{ profileAddonCost(usageRange) }}
-
-                            {% endfor %}
-                            {% endfor %}
-                            {% else %}
-                            <div class="invisible">.</div>
-                            {% endif %}
-                            {% if loop.index < planCount %}
-
-                            <li
-                                    class="profile-checklist__item profile-edition__prices-separator"
-                            >
-                                <span>{{ editions.i18n.tierSeparator }}</span>
-                            </li>
-                            {% endif %} {% endfor %}
-                        </div>
-                        {% if edition and edition.callToAction and edition.callToAction.enabled %}
-                        <a href="{{edition.callToAction.url}}"
-                           role="button"
-                           {% if edition.callToAction.actionType == "LEAD_GEN" %}
-                            data-toggle="modal"
-                            data-target="#leadModal"
-                            {% endif %}
-                           class="button button--primary button--full-width">
-                            {{i18n[edition.callToAction.actionType] or edition.callToAction.label}}
-                        </a>
-                        {% endif %}
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
+            <h3 class="text-center heading heading--3 heading--center heading--leading">
+                {% if editions.items.length > 0 %}
+                {{ editions.i18n.addons }}
+                {% endif %}
+            </h3>
         </div>
     </div>
-    {% endfor %}
-    <div class="row">
+    <div class="row flex-column-reverse flex-lg-row">
 
+        <div class="col-12 pl-0 pr-0 d-lg-flex d-none flex-wrap align-self-start">
+            {# Loop through first 3 elements #}
+
+            {% if editions.bullets.length %}
+            {% set sliceCountFirstRow = 3 %}
+            {% else %}
+            {% set sliceCountFirstRow = 4 %}
+            {% endif %}
+
+            {% for edition in editions.items %}
+
+            {% if loop.index0 === 0 %}
+
+            {% set items = [] %}
+
+            {% for index in range(loop.index0, loop.index0 + sliceCountFirstRow) -%}
+            {% if index < editions.items.length %}
+
+            {% set items = (items.push(editions.items[index]), items) %}
+
+            {% endif %}
+            {%- endfor %}
+
+            {% if items.length > 0 %}
+
+            {{profileAddonList(editions, items, sliceCountFirstRow === 3, 0, i18n)}}
+
+            {% endif %}
+
+            {% endif %}
+
+            {%- endfor %}
+
+
+            {# d-lg-flex d-none in profileEditionList macro #}
+            {# Loop through next 4 elements #}
+            {% if editions.items.length > 3 %}
+
+            {% if editions.bullets.length %}
+            {% set sliceCountOtherRows = 3 %}
+            {% else %}
+            {% set sliceCountOtherRows = 4 %}
+            {% endif %}
+
+            {% for edition in editions.items %}
+            {% set transformedIndex = loop.index0 - sliceCountFirstRow %}
+
+            {% if transformedIndex >= 0 and ((transformedIndex % sliceCountOtherRows) === 0 or transformedIndex === 0)
+            %}
+
+            {% set items = [] %}
+
+            {% for index in range(transformedIndex, transformedIndex + sliceCountOtherRows) -%}
+            {% set rangeIndex = sliceCountFirstRow + index %}
+
+            {% if rangeIndex < editions.items.length %}
+
+            {% set items = (items.push(editions.items[rangeIndex]), items) %}
+
+            {% endif %}
+            {%- endfor %}
+
+            {% if items.length > 0 %}
+
+            {{profileAddonList(editions, items, sliceCountOtherRows === 3, sliceCountFirstRow + transformedIndex)}}
+
+            {% endif %}
+
+            {% endif %}
+
+            {%- endfor %}
+            {% endif %}
+        </div>
+
+        <div class="col-12 p-0 d-lg-none d-flex flex-wrap">
+            {% for edition in editions.items %}
+            <div class="col-12 profile-edition-item mb-3">
+                {{profileEditionListItemHeader(edition.edition[0])}}
+                {{profileEditionListItemContent(edition.edition[0], editions, 'mobile', loop, 0, i18n)}}
+            </div>
+            {%- endfor %}
+        </div>
     </div>
 </div>
 

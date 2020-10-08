@@ -1,0 +1,45 @@
+{% from "/macros/profile/profile-edition-list-item-header.html" import profileEditionListItemHeader %}
+{% from "/macros/profile/profile-edition-list-item-content-price.html" import profileEditionListItemContentPrice %}
+{% from "/macros/profile/profile-edition-list-item-content-details.html" import profileEditionListItemContentDetails %}
+{% from "/macros/profile/profile-edition-list-item-content-includes.html" import profileEditionListItemContentIncludes %}
+{% from "/macros/profile/profile-edition-list-item-content-cta.html" import profileEditionListItemContentCTA %}
+
+{% macro profileAddonList(editions, items, break, startIndex, i18n) %}
+<div class="col-12 d-flex p-0 justify-content-center">
+    {% for edition in items %}
+    <div class="col-12 {% if break %}col-lg-4 {% else %}col-lg-3 {% endif %} d-flex profile-edition-item">
+        {{profileEditionListItemHeader(edition.edition[0])}}
+    </div>
+    {% endfor %}
+</div>
+<div class="col-12 p-0">
+    <div class="col-12 d-flex p-0 justify-content-center">
+        {% for edition in items %}
+        <div class="col-12 {% if break %}col-lg-4 {% else %}col-lg-3 {% endif %} d-flex profile-edition-item">
+            {{profileEditionListItemContentPrice(edition.edition[0], editions, 'desktop', loop, startIndex, i18n)}}
+        </div>
+        {% endfor %}
+    </div>
+    <div class="col-12 d-flex p-0 justify-content-center">
+        {% for edition in items %}
+        <div class="col-12 {% if break %}col-lg-4 {% else %}col-lg-3 {% endif %} d-flex profile-edition-item">
+            {{profileEditionListItemContentDetails(edition.edition[0], editions, 'desktop', loop, startIndex, i18n)}}
+        </div>
+        {% endfor %}
+    </div>
+    <div class="col-12 d-flex p-0 justify-content-center">
+        {% for edition in items %}
+        <div class="col-12 {% if break %}col-lg-4 {% else %}col-lg-3 {% endif %} d-flex profile-edition-item">
+            {{profileEditionListItemContentIncludes(edition.edition[0], editions, 'desktop', loop, startIndex, i18n)}}
+        </div>
+        {% endfor %}
+    </div>
+    <div class="col-12 d-flex p-0 justify-content-center">
+        {% for edition in items %}
+        <div class="col-12 {% if break %}col-lg-4 {% else %}col-lg-3 {% endif %} d-flex profile-edition-item">
+            {{profileEditionListItemContentCTA(edition.edition[0], editions, 'desktop', loop, startIndex, i18n)}}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endmacro %}
