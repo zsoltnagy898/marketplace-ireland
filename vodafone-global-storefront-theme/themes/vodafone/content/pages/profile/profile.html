@@ -146,10 +146,23 @@
           }
       );
     }
-  
+    var handleCustomFormElements = function () {
+        $('.form-check-input.required').click(function () {
+            var inputId = $(this).attr('class').match(/custom\d+/)[0]
+            var hidden = $("#" + inputId).val()
+            var newVal = $(this).val()
+            if ( hidden.replace(newVal, "") === hidden) {
+                $("#" + inputId).val(hidden + newVal)
+            } else {
+                $("#" + inputId).val(hidden.replace(newVal, ""))
+            }
+        })
+    }
+
     $("#submitLeadGen").on("click", function(e) {
         e.preventDefault();
-  
+
+        $("#leadGenForm").validate({ignore: '.hidden'})
         if ($("#leadGenForm").valid()) {
             submitLead()
         }
@@ -163,18 +176,25 @@
         var stateSection = $container.find('#state').parent();
         provinceSection.addClass("hidden");
         stateSection.addClass("hidden");
+        var provinceSelect = $container.find('#province');
+        var stateSelect = $container.find('#state');
+        provinceSelect.addClass("hidden");
+        stateSelect.addClass("hidden");
         
         if (selectedCountry === "US" || selectedCountry === "USA") {
             stateSection.removeClass("hidden");
+            stateSelect.removeClass("hidden");
         }
         if (selectedCountry === "CA" || selectedCountry === "CAN") {
             provinceSection.removeClass("hidden");
+            provinceSelect.removeClass("hidden");
         }
         $('#prefix').html("+" + selectedPhoneCode);
         $('#phone').data('prefix', "+" + selectedPhoneCode)
     }
     $(document).ready(function () {
         toggleStates()
+        handleCustomFormElements()
         $(document).find('#country').change(function (e) {
             toggleStates()
         })

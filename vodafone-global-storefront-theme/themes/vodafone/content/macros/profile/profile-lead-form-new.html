@@ -1,4 +1,6 @@
 {% macro leadForm(leads) %}
+{% set validationTypes = {'email': 'email', 'phone': 'number'} %}
+
 <div class="modal  fade" id="leadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -69,7 +71,7 @@
                                 {% endif %}
                                 <input
                                     {{ 'required' if schema[key].isRequired }}
-                                    type="{{ schema[key].type }}"
+                                    type="{{ validationTypes[schema[key].name] or schema[key].type }}"
                                     class="form-control {{ 'required' if schema[key].isRequired }}"
                                     name="{{ schema[key].name }}"
                                     id="{{ schema[key].name }}"
@@ -96,17 +98,19 @@
                             <div class="form-group">
                                 <label for="{{ item.name }}">{{ '* ' if item.isRequired }}{{ item.title }}</label>
                                 {% if item.type == "Checkboxes" %}
+                                {% set externalLoop = loop %}
                                 {% for option in item.options %}
                                  <div class="form-check">
                                     <input
                                     type="checkbox"
-                                    class="form-check-input"
+                                    class="form-check-input {{ 'required' if item.isRequired }} custom{{externalLoop.index0}}"
                                     name="{{ item.name }}"
                                     id="{{option.label}}"
                                     value="{{ option.value }}">
                                     <label for="{{ option.label }}">{{ option.label }}</label>
                                 </div>
                                 {% endfor %}
+                                <input type="hidden" name="custom{{loop.index0}}" id="custom{{loop.index0}}" required>
                                 {% else %}
                                 <input 
                                 {{ 'required' if item.isRequired }}
