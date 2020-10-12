@@ -110,7 +110,7 @@
                                     <label for="{{ option.label }}">{{ option.label }}</label>
                                 </div>
                                 {% endfor %}
-                                <input type="hidden" name="custom{{loop.index0}}" id="custom{{loop.index0}}" required>
+                                <input type="hidden" name="custom{{loop.index0}}" id="custom{{loop.index0}}" {{ 'required' if item.isRequired }}>
                                 {% else %}
                                 <input 
                                 {{ 'required' if item.isRequired }}
